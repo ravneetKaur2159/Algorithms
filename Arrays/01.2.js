@@ -14,7 +14,8 @@ function reverseString(str){
 //console.log(reverseString(givenStr).join(""));
 
 //Time Complexity - O(n)
-//Space Complexity - O(1)
+//Space Complexity - O(1) --> actually O(n) because strings are immutable hence converting the string to array
+//and back to string
 
 function reverseString2(string){
     var stringArray = string.split("");
