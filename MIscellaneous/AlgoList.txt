@@ -1,0 +1,2 @@
+1) Factors of a number
+2) Find all prime factors upto the given number n - Seive of Eratosthenis algorithm
