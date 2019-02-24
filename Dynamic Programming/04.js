@@ -52,7 +52,7 @@ function isDivisbleByM(args, index){
 
 
 // Solving it in pseudo-polynomial time O(n*sum) - works on sorted Array
-// There is a subset present in the array that equals to sum
+// THere is a subset present in the array that equals to sum
 var cacheArr = [];
 var sum =6;
 
@@ -85,3 +85,38 @@ function isSubsetPresent(){
     }
 }
 isSubsetPresent();
+
+
+// Printing all subsets of givenArray who sum to given sum
+var pathArr = [];
+function printSubsets(row, column){
+    if(row<0 || column<0){
+        return;
+    }
+
+    if(typeof row != "undefined" && typeof column != "undefined" && cacheArr[row][column]){
+        for(var k=row;k>=0;k--){
+            if(!cacheArr[k][column]){
+                break;
+            }
+        }
+        console.log(givenArray[k+1]);
+        printSubsets(row-1,column-givenArray[row]);
+        return;
+    }
+
+    for(var i=givenArray.length-1;i>=0;i--){
+        for(j=sum;;){
+            if(cacheArr[i][j]){
+                console.log("Subset is : ");
+                console.log(givenArray[i]);
+                printSubsets(i-1,j-givenArray[i]);
+                break;
+            }
+        }
+    }
+}
+printSubsets();
+
+
+//Printing all subsets that give sum within a range
