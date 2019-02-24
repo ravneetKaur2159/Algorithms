@@ -7,7 +7,7 @@
  // As this is a NP-Complete problem there is no polynomial time complexity in which it can be solved. 
  // The time complexity is O(2^n) as it is a GP (1,2,4,8,16,32..) r=2 (a*r*(n-1)/r-1)
 
-var givenArray = [5,3,10,1,5,0];
+var givenArray = [0,1,2,3,4,5,6];
 var m = 6;
 var cacheObj = {};
 
@@ -48,5 +48,40 @@ function isDivisbleByM(args, index){
         console.log("Sum is divisible by "+m+" at index "+index);
     }
 }
+//findingSubsetsDivisibleByM();
 
-findingSubsetsDivisibleByM();
+
+// Solving it in pseudo-polynomial time O(n*sum) - works on sorted Array
+// There is a subset present in the array that equals to sum
+var cacheArr = [];
+var sum =6;
+
+function findSubsets(){
+    for(var i=0;i<givenArray.length;i++){
+        cacheArr[i] = [];
+        for(var j=0;j<=sum;j++){
+            if(j == 0){
+                cacheArr[i][j] = 1;
+            }else if(i == 0 && j!=0){
+                cacheArr[i][j] = 0;
+            }else{
+                cacheArr[i][j] = cacheArr[i-1][j] || cacheArr[i-1][j-givenArray[i]];
+            }
+            
+        }
+    }
+}
+
+findSubsets()
+
+// Printing if subsets exists
+function isSubsetPresent(){
+    var j=cacheArr.length-1;
+    for(var i=givenArray.length-1;i>=0;i--){
+        if(cacheArr[i][j]){
+            console.log("Subset exists");
+            return;
+        }
+    }
+}
+isSubsetPresent();
