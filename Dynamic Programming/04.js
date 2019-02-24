@@ -88,7 +88,6 @@ isSubsetPresent();
 
 
 // Printing all subsets of givenArray who sum to given sum
-var pathArr = [];
 function printSubsets(row, column){
     if(row<0 || column<0){
         return;
@@ -116,7 +115,44 @@ function printSubsets(row, column){
         }
     }
 }
-printSubsets();
+//printSubsets();
 
 
 //Printing all subsets that give sum within a range
+var lowRange = 3;
+var highRange = 6;
+function printSubsetsOfRange(row, column){
+    if(row<0 || column<0){
+        return;
+    }
+
+    if(typeof row != "undefined" && typeof column != "undefined" && cacheArr[row][column]){
+        for(var k=row;k>=0;k--){
+            if(!cacheArr[k][column]){
+                break;
+            }
+        }
+        console.log(givenArray[k+1]);
+        printSubsets(row-1,column-givenArray[row]);
+        return;
+    }
+    var j=highRange;
+    var i=givenArray.length-1;
+    for(;;i--){
+        for(;j>=lowRange;){
+            if(cacheArr[i][j] && givenArray[i]<=j){
+                console.log("Printing all subsets that sum to : "+ j);
+                console.log("Subset is : ");
+                console.log(givenArray[i]);
+                printSubsets(i-1,j-givenArray[i]);
+            }
+            break;
+        }
+        if(i==0){
+            j=j-1;
+            i=givenArray.length-1;
+        }
+    }
+}
+
+printSubsetsOfRange();
