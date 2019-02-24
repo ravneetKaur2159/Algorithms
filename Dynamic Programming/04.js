@@ -155,4 +155,48 @@ function printSubsetsOfRange(row, column){
     }
 }
 
-printSubsetsOfRange();
+//printSubsetsOfRange();
+
+/* 
+ * Variation can be print maximum size subset that sums to the given sum. Solving this using tabulation approach
+ */
+
+var givenSum = 6;
+var maximumSubset = {};
+function printMaximumSubset(endIndex, startIndex){
+    if(typeof startIndex != "undefined" && endIndex==startIndex && givenArray[startIndex]<=givenSum){
+        maximumSubset[startIndex] = givenArray[startIndex];
+        return;
+    }
+    if(endIndex!=startIndex){
+        for(var key in maximumSubset){
+            if(maximumSubset.hasOwnProperty(key)){
+                var newKey = key.toString()+endIndex;
+                var value = maximumSubset[key]+givenArray[endIndex];
+                if(value<=givenSum){
+                    maximumSubset[newKey] = value;
+                }
+            }
+        }
+        return;
+    }
+
+    for(var i=0;i<givenArray.length;i++){
+        for(var j=0;j<=i;j++){
+            printMaximumSubset(i,j);
+        }
+    }
+}
+
+printMaximumSubset();
+
+//Sorting object by keys
+for(var key in maximumSubset){
+    if(maximumSubset.hasOwnProperty(key)){
+        if(maximumSubset[key]<givenSum){
+            delete maximumSubset[key];
+        }
+    }
+}
+//Then print the maximum subset
+console.log(maximumSubset);
