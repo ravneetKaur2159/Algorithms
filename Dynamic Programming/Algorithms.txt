@@ -2,3 +2,4 @@
 2) Find factorial of a number
 3) Find the fibonacci series till n
 4) Given a set of non-negative distinct integers, and a value m, determine if there is a subset of the given set with sum divisible by m.
+5) Write an efficient program to find the sum of contiguous subarray within a one-dimensional array of numbers which has the largest sum.
