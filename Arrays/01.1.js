@@ -55,4 +55,10 @@ function uniqueCharAscii(string){
 
 // Using ASCII characters array - Time complexity O(n)
 //Space complexity : O(1)
-// can be done through bit-wise operators
+
+function uniqueCharBitwise(str){
+    var bitChecker = 0;
+    for(var i=0;i<str.length;i++){
+        var bitLocation = 
+    }
+}
