@@ -29,4 +29,39 @@ function longSubSeqBruteForce(){
     console.log(cacheElementChain);
 }
     
-longSubSeqBruteForce();
+//longSubSeqBruteForce();
+
+
+// LIS using tabulation 
+// Time Complexity - O(n^2)
+// Space Complexity - O(n)
+var pathArray = [];
+pathArray[0] = 0;
+function longSubSequenceTab(){
+    for(var i=0;i<givenArray.length;i++){
+        for(var j=0;j<=i;j++){
+
+            if(givenArray[j]<givenArray[i]){
+                var value = pathArray[j]+1;
+                if(pathArray[i]){
+                    if(pathArray[i]<value){
+                        pathArray[i] = value;
+                    }
+                }else{
+                    pathArray[i] = value;
+                }
+            } else if(givenArray[j]>givenArray[i]){
+                if(pathArray[i] || pathArray[i] < 0){
+                }else{
+                    pathArray[i] = 0;
+                }
+                
+            } else{
+                pathArray[i] = pathArray[j];
+            }
+        }
+    }
+    console.log(pathArray[pathArray.length-1]+1);
+}
+
+longSubSequenceTab();
