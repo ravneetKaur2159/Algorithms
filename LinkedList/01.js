@@ -42,3 +42,20 @@ LinkedList.prototype.addNodeAtEndNoTailPointer = function(value){
 }
 
 newList.addNodeAtEndNoTailPointer(40);
+
+
+// Insert element at a particular index
+LinkedList.prototype.insertElementAtIndex = function(value, index){
+    var newNode = new Node(value);
+    var i=1;
+    var node = this.head;
+    while(i< index && node.next != null){
+        node = node.next;
+        i++;
+    }
+    newNode.next = node.next;
+    node.next=newNode;
+}
+
+newList.insertElementAtIndex(250,1);
+
