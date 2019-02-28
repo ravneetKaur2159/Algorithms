@@ -59,3 +59,9 @@ LinkedList.prototype.insertElementAtIndex = function(value, index){
 
 newList.insertElementAtIndex(250,1);
 
+// Find length of a linked list recursively
+LinkedList.prototype.lengthLinkedList = function(){
+    if(node.next == null){
+        return;
+    }
+}
