@@ -47,9 +47,9 @@ function recursiveSort(startIndex, endIndex){
     }
 }
 
-recursiveSort();
-maxElementSortedArray();
-//Finding Max element given array is sorted
+//recursiveSort();
+//maxElementSortedArray();
+//Finding Max element given array is sorted - O(n)
 function maxElementSortedArray() {
     for(var i=0,j = newArray.length-1;i<j;){
         if(newArray[i]+newArray[j] < sum){
@@ -63,3 +63,20 @@ function maxElementSortedArray() {
     }
     console.log("There are no two indices that add up to the given sum");
 }
+
+
+// Finding indices by hashing - O(n)
+function getIndicesByHashing(){
+    var cacheValues = {};
+    for(var i=0;i<givenArray.length; i++){
+        var requiredElem = sum-givenArray[i];
+        if(typeof cacheValues[requiredElem] != "undefined"){
+            console.log("The two indices are : "+cacheValues[requiredElem]+" and "+i);
+            return;
+        }
+        cacheValues[givenArray[i]] = i;
+    }
+    console.log("There are no two indices that add up to the given sum");
+}
+
+getIndicesByHashing();
