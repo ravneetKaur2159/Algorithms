@@ -1,8 +1,8 @@
 // Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 // You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
-var givenArray = [2,7,1,8];
-var sum = 8;
+var givenArray = [2,7,1,8,4,4,4];
+var sum = 12;
 
 // Brute Force - O(n^2)
 function sumTwoNumbers(){
@@ -78,5 +78,36 @@ function getIndicesByHashing(){
     }
     console.log("There are no two indices that add up to the given sum");
 }
+//getIndicesByHashing();
 
-getIndicesByHashing();
+// Algorithm that returns the fixed subset of indices that sum to the given number by using hashing
+function getRequiredIndicesByHashing(reqSubset,presentIndex){
+    for(var i=0;i<givenArray.length;i++){
+        if(getIndicesOfGivenLength(i,0)){
+            console.log(i);
+            return;
+        }
+    }
+    console.log("There are no "+reqSubset+" indices that add up to the given sum");
+}
+
+// each call has O(n) time
+function getIndicesOfGivenLength(removeIndex, startIndex, endIndex){
+    var cacheValues = {};
+    requiredSum = sum - givenArray[removeIndex];
+    for(var i=startIndex; i<givenArray.length;i++){
+        if(i == removeIndex){
+            continue;
+        }
+        var requiredElem = requiredSum-givenArray[i];
+        if(typeof cacheValues[requiredElem] != "undefined"){
+            console.log("The indices are : "+cacheValues[requiredElem]+" and "+i);
+            return true;
+        }
+        cacheValues[givenArray[i]] = i;
+    }
+    return false;
+}
+
+// Time complexity = O(n^2)
+getRequiredIndicesByHashing(3)
