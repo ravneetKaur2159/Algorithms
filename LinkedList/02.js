@@ -35,35 +35,38 @@ var numberCreation = function(list){
     return parseInt(num);
 }
 
-sumTravel()
+//sumTravel()
 
 // Say, the implicit conversion from int to string back to int is not present. 
 // Finding the solution recursivly using a variable as carry
 
 function sumRecursive(){
     var num1 = numberCreationRecursive(list1);
+    var num2 = numberCreationRecursive(list2);
+
+    console.log(num1+num2);
 }
 
 var globalSum = 0;
-var numberCreationRecursive = function(list, node){
+var numberCreationRecursive = function(list, node, length){
     if(typeof node == "undefined"){
+        globalSum = 0;
         var node = list.head;
-        var length = list.lengthLinkedListRec()+1;
+        var length = list.lengthLinkedListRec();
     }
 
-    if(node.next == null){
-        return node.value;
+    if(node == null){
+        return ;
     }else{
-        globalSum = globalSum + Math.pow(10,length)*node.value;
-        node = node.next;
         length = length-1;
+        globalSum = globalSum + Math.pow(10,length)*node.value;
     }
 
-    numberCreationRecursive(null,node.next);
+    numberCreationRecursive(null,node.next,length);
     return globalSum;
 }
 
-console.log(sumRecursive());
+sumRecursive();
 
 // Adding elements of an array recursively - digression
 var arr = [0,6,5,4,8,7];
