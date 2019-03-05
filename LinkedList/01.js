@@ -60,8 +60,31 @@ LinkedList.prototype.insertElementAtIndex = function(value, index){
 newList.insertElementAtIndex(250,1);
 
 // Find length of a linked list recursively
-LinkedList.prototype.lengthLinkedList = function(){
-    if(node.next == null){
-        return;
+LinkedList.prototype.lengthLinkedListRec = function(node){
+    if(typeof node == "undefined"){
+        node = this.head;
     }
+
+    if(node.next == null){
+        return 1;
+    }
+    return 1 + LinkedList.prototype.lengthLinkedListRec(node.next);
+}
+
+//Find length of linked list iteratively
+LinkedList.prototype.lengthLinkedListIterative = function(){
+    var length = 1;
+    var node = this.head;
+    while(node.next != null){
+        length++;
+        node = node.next;
+    }
+    return length;
+}
+
+//console.log(newList.lengthLinkedListIterative());
+//console.log(newList.lengthLinkedListRec());
+
+if(typeof exports !== 'undefined') {
+    exports.LinkedList = LinkedList;
 }
